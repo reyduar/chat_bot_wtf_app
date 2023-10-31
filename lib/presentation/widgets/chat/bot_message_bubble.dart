@@ -23,7 +23,7 @@ class BotMessageBubble extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5),
-        const _ImageBubble(),
+        _ImageBubble(message.imageUrl!),
         const SizedBox(height: 10),
       ],
     );
@@ -31,7 +31,9 @@ class BotMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
-  const _ImageBubble();
+  final String imageUrl;
+
+  const _ImageBubble(this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Image.network(
-          'https://yesno.wtf/assets/yes/9-6403270cf95723ae4664274db51f1fd4.gif',
+          imageUrl,
           width: size.width * 0.7,
           height: 150,
           fit: BoxFit.cover,

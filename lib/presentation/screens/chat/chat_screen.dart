@@ -20,7 +20,7 @@ class ChatScreen extends StatelessWidget {
                 'https://avatars.githubusercontent.com/u/2678369?v=4'),
           ),
         ),
-        title: const Text('Wall-E IA'),
+        title: const Text('Bot'),
         centerTitle: false,
       ),
       body: const _ChatView(),
@@ -42,6 +42,7 @@ class _ChatView extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
+                  controller: chatProvider.chatScrollController,
                   itemCount: chatProvider.messagesList.length,
                   itemBuilder: (context, index) {
                     final message = chatProvider.messagesList[index];
@@ -51,7 +52,9 @@ class _ChatView extends StatelessWidget {
                             message: message,
                           );
                   })),
-          const MessageFieldBox()
+          MessageFieldBox(
+            onValue: chatProvider.sendMessage,
+          ) // (value) => chatProvider.sendMessage(value)
         ],
       ),
     ));
